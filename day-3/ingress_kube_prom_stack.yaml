@@ -2,6 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: kubernetes-prometheus-stack
+  namespace: monitoring
   annotations:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
@@ -15,20 +16,20 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: prometheus-service  # Change this to your Prometheus service name
+                name: monitoring-kube-prometheus-prometheus      #change service name according to your service
                 port:
                   number: 9090
           - path: /grafana
             pathType: Prefix
             backend:
               service:
-                name: grafana-service  # Change this to your Grafana service name
+                name: monitoring-grafana           #change service name according to your service
                 port:
-                  number: 3000
+                  number: 80
           - path: /alertmanager
             pathType: Prefix
             backend:
               service:
-                name: alertmanager-service  # Change this to your Alertmanager service name
+                name: monitoring-kube-prometheus-alertmanager           #change service name according to your service
                 port:
                   number: 9093
