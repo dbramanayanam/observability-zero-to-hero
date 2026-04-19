@@ -74,7 +74,7 @@ eksctl create iamserviceaccount \
   --namespace=kube-system \
   --name=aws-load-balancer-controller \
   --role-name AmazonEKSLoadBalancerControllerRole \
-  --attach-policy-arn=arn:aws:iam::274491323053:policy/AWSLoadBalancerControllerIAMPolicy \
+  --attach-policy-arn=arn:aws:iam::<accountID>:policy/AWSLoadBalancerControllerIAMPolicy \
   --approve
 ```
 
@@ -106,7 +106,7 @@ helm upgrade -n kube-system aws-load-balancer-controller eks/aws-load-balancer-c
   --set serviceAccount.create=false \
   --set serviceAccount.name=aws-load-balancer-controller \
   --set region=us-east-1 \
-  --set vpcId=vpc-08256894ca4399788
+  --set vpcId=<VPC-ID>
 ```
 
 ---
@@ -348,7 +348,7 @@ eksctl create iamserviceaccount \
   --namespace=kube-system \
   --name=aws-load-balancer-controller \
   --role-name AmazonEKSLoadBalancerControllerRole \
-  --attach-policy-arn=arn:aws:iam::274491323053:policy/AWSLoadBalancerControllerIAMPolicy \
+  --attach-policy-arn=arn:aws:iam::<Account-ID>:policy/AWSLoadBalancerControllerIAMPolicy \
   --approve
 
 helm repo add eks https://aws.github.io/eks-charts
@@ -359,7 +359,7 @@ helm upgrade -n kube-system aws-load-balancer-controller eks/aws-load-balancer-c
   --set serviceAccount.create=false \
   --set serviceAccount.name=aws-load-balancer-controller \
   --set region=us-east-1 \
-  --set vpcId=vpc-08256894ca4399788
+  --set vpcId=<VPC-ID>
 
 kubectl get pods -n kube-system | grep aws-load-balancer-controller
 kubectl logs -n kube-system deploy/aws-load-balancer-controller
