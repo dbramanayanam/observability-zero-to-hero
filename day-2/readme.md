@@ -83,6 +83,7 @@ eksctl create nodegroup --cluster=observability \
                         --region=us-east-1 \
                         --name=observability-ng-private \
                         --node-type=t3.medium \
+                        --spot \
                         --nodes-min=2 \
                         --nodes-max=3 \
                         --node-volume-size=20 \
